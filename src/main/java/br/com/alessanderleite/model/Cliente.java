@@ -1,5 +1,6 @@
 package br.com.alessanderleite.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,10 +13,15 @@ public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private long id;
 	
+	@Column(name = "nome", nullable = false)
 	private String nome;
+	
+	@Column(name = "age", nullable = false)
 	private int age;
+	
 	public Cliente() {
 	
 	}
