@@ -1,5 +1,11 @@
 package br.com.alessanderleite.model;
 
+/**
+ * fonte de referência: https://ipvigilante.com/
+ * 
+ * @author Alessander
+ *
+ */
 public class Data {
 
 	private String ipv4;
