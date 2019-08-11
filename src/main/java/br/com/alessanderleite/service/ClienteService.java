@@ -10,6 +10,6 @@ public interface ClienteService {
 	Cliente criar(Cliente cliente);
 	void alterar(Cliente cliente);
 	Optional<Cliente> consultarPorId(Long id);
-	List<Cliente> listarTodosClientes();
+	List<Cliente> listarTodos();
 	void removerPorId(Long id);
 }
