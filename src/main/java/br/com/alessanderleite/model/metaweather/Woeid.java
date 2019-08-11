@@ -1,7 +1,8 @@
-package br.com.alessanderleite.model;
+package br.com.alessanderleite.model.metaweather;
 
 /**
  * fonte: https://www.metaweather.com/api/
+ * Location Search
  * 
  * @author Alessander
  *

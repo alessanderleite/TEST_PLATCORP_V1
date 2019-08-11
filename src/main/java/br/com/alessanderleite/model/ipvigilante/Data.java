@@ -1,4 +1,4 @@
-package br.com.alessanderleite.model;
+package br.com.alessanderleite.model.ipvigilante;
 
 /**
  * fonte de referência: https://ipvigilante.com/
