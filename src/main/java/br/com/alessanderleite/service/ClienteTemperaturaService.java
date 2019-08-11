@@ -4,5 +4,5 @@ import br.com.alessanderleite.model.ClienteTemperatura;
 
 public interface ClienteTemperaturaService {
 
-	ClienteTemperaturaService criar(ClienteTemperatura clienteTemperatura);
+	ClienteTemperatura criar(ClienteTemperatura clienteTemperatura);
 }
