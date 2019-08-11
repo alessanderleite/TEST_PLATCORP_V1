@@ -19,17 +19,17 @@ public class Cliente {
 	@Column(name = "nome", nullable = false)
 	private String nome;
 	
-	@Column(name = "age", nullable = false)
-	private int age;
+	@Column(name = "idade", nullable = false)
+	private int idade;
 	
 	public Cliente() {
 	
 	}
 	
-	public Cliente(long id, String nome, int age) {
+	public Cliente(long id, String nome, int idade) {
 		this.id = id;
 		this.nome = nome;
-		this.age = age;
+		this.idade = idade;
 	}
 	
 	public long getId() {
@@ -48,11 +48,11 @@ public class Cliente {
 		this.nome = nome;
 	}
 	
-	public int getAge() {
-		return age;
+	public int getIdade() {
+		return idade;
 	}
 	
-	public void setAge(int age) {
-		this.age = age;
+	public void setAge(int idade) {
+		this.idade = idade;
 	}
 }
