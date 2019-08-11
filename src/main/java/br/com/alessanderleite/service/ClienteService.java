@@ -7,9 +7,9 @@ import br.com.alessanderleite.model.Cliente;
 
 public interface ClienteService {
 
-	Cliente criarCliente(Cliente cliente);
-	void alterarCliente(Cliente cliente);
-	Optional<Cliente> consultarClientePorId(Long id);
+	Cliente criar(Cliente cliente);
+	void alterar(Cliente cliente);
+	Optional<Cliente> consultarPorId(Long id);
 	List<Cliente> listarTodosClientes();
-	void removerClientePorId(Long id);
+	void removerPorId(Long id);
 }
