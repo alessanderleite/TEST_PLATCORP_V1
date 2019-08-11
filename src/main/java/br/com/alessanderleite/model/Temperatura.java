@@ -1,7 +1,14 @@
 package br.com.alessanderleite.model;
 
+/**
+ * fonte: https://www.metaweather.com/api/
+ * Location Day
+ * 
+ * @author Alessander
+ *
+ */
 public class Temperatura {
-	
+
 	private Integer id;
 	private String weatherStateName;
 	private String weatherStateAbbr;
@@ -40,124 +47,134 @@ public class Temperatura {
 		this.predictability = predictability;
 	}
 
-
 	public Integer getId() {
-	return id;
+		return id;
 	}
-	
+
 	public void setId(Integer id) {
-	this.id = id;
+		this.id = id;
 	}
-	
+
 	public String getWeatherStateName() {
-	return weatherStateName;
+		return weatherStateName;
 	}
-	
+
 	public void setWeatherStateName(String weatherStateName) {
-	this.weatherStateName = weatherStateName;
+		this.weatherStateName = weatherStateName;
 	}
-	
+
 	public String getWeatherStateAbbr() {
-	return weatherStateAbbr;
+		return weatherStateAbbr;
 	}
-	
+
 	public void setWeatherStateAbbr(String weatherStateAbbr) {
-	this.weatherStateAbbr = weatherStateAbbr;
+		this.weatherStateAbbr = weatherStateAbbr;
 	}
-	
+
 	public String getWindDirectionCompass() {
-	return windDirectionCompass;
+		return windDirectionCompass;
 	}
-	
+
 	public void setWindDirectionCompass(String windDirectionCompass) {
-	this.windDirectionCompass = windDirectionCompass;
+		this.windDirectionCompass = windDirectionCompass;
 	}
-	
+
 	public String getCreated() {
-	return created;
+		return created;
 	}
-	
+
 	public void setCreated(String created) {
-	this.created = created;
+		this.created = created;
 	}
-	
+
 	public String getApplicableDate() {
-	return applicableDate;
+		return applicableDate;
 	}
-	
+
 	public void setApplicableDate(String applicableDate) {
-	this.applicableDate = applicableDate;
+		this.applicableDate = applicableDate;
 	}
-	
+
 	public Double getMinTemp() {
-	return minTemp;
+		return minTemp;
 	}
-	
+
 	public void setMinTemp(Double minTemp) {
-	this.minTemp = minTemp;
+		this.minTemp = minTemp;
 	}
-	
+
 	public Double getMaxTemp() {
-	return maxTemp;
+		return maxTemp;
 	}
-	
+
 	public void setMaxTemp(Double maxTemp) {
-	this.maxTemp = maxTemp;
+		this.maxTemp = maxTemp;
 	}
-	
+
 	public Double getTheTemp() {
-	return theTemp;
+		return theTemp;
 	}
-	
+
 	public void setTheTemp(Double theTemp) {
-	this.theTemp = theTemp;
+		this.theTemp = theTemp;
 	}
-	
+
 	public Double getWindSpeed() {
-	return windSpeed;
+		return windSpeed;
 	}
-	
+
 	public void setWindSpeed(Double windSpeed) {
-	this.windSpeed = windSpeed;
+		this.windSpeed = windSpeed;
 	}
-	
+
 	public Double getWindDirection() {
-	return windDirection;
+		return windDirection;
 	}
-	
+
 	public void setWindDirection(Double windDirection) {
-	this.windDirection = windDirection;
+		this.windDirection = windDirection;
 	}
-	
+
 	public Double getAirPressure() {
-	return airPressure;
+		return airPressure;
 	}
-	
+
 	public void setAirPressure(Double airPressure) {
-	this.airPressure = airPressure;
+		this.airPressure = airPressure;
 	}
-	
+
 	public Integer getHumidity() {
-	return humidity;
+		return humidity;
 	}
-	
+
 	public void setHumidity(Integer humidity) {
-	this.humidity = humidity;
+		this.humidity = humidity;
 	}
-	
+
 	public Object getVisibility() {
-	return visibility;
+		return visibility;
 	}
-	
+
 	public void setVisibility(Object visibility) {
-	this.visibility = visibility;
+		this.visibility = visibility;
 	}
-	
+
 	public Integer getPredictability() {
-	return predictability;
+		return predictability;
 	}
-	
+
 	public void setPredictability(Integer predictability) {
-	this.predictability = predictability;
+		this.predictability = predictability;
 	}
+
+	@Override
+	public String toString() {
+		return "Temperatura [id=" + id + ", weatherStateName=" + weatherStateName + ", weatherStateAbbr="
+				+ weatherStateAbbr + ", windDirectionCompass=" + windDirectionCompass + ", created=" + created
+				+ ", applicableDate=" + applicableDate + ", minTemp=" + minTemp + ", maxTemp=" + maxTemp + ", theTemp="
+				+ theTemp + ", windSpeed=" + windSpeed + ", windDirection=" + windDirection + ", airPressure="
+				+ airPressure + ", humidity=" + humidity + ", visibility=" + visibility + ", predictability="
+				+ predictability + "]";
+	}
+
 }
