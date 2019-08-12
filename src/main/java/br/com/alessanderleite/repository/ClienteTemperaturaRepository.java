@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.alessanderleite.model.ClienteTemperatura;
 
 @Repository
-public interface ClienteTemperaturaRepository extends JpaRepository<ClienteTemperatura, Long>{
+public interface ClienteTemperaturaRepository extends JpaRepository<ClienteTemperatura, Integer>{
 	
 }
