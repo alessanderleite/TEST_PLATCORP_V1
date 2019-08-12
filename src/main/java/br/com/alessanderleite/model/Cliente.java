@@ -23,11 +23,8 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
-	
-	@Column(name = "nome", nullable = false)
+
 	private String nome;
-	
-	@Column(name = "idade", nullable = false)
 	private int idade;
 	
 	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
