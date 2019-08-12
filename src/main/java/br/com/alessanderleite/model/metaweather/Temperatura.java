@@ -1,5 +1,12 @@
 package br.com.alessanderleite.model.metaweather;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * fonte: https://www.metaweather.com/api/
  * Location Day
@@ -7,8 +14,12 @@ package br.com.alessanderleite.model.metaweather;
  * @author Alessander
  *
  */
+@Entity
+@Table(name = "temperatura")
 public class Temperatura {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	private String weatherStateName;
 	private String weatherStateAbbr;
@@ -22,14 +33,14 @@ public class Temperatura {
 	private Double windDirection;
 	private Double airPressure;
 	private Integer humidity;
-	private Object visibility;
+	private String visibility;
 	private Integer predictability;
 
 	public Temperatura() {}
 
 	public Temperatura(Integer id, String weatherStateName, String weatherStateAbbr, String windDirectionCompass,
 			String created, String applicableDate, Double minTemp, Double maxTemp, Double theTemp, Double windSpeed,
-			Double windDirection, Double airPressure, Integer humidity, Object visibility, Integer predictability) {
+			Double windDirection, Double airPressure, Integer humidity, String visibility, Integer predictability) {
 		this.id = id;
 		this.weatherStateName = weatherStateName;
 		this.weatherStateAbbr = weatherStateAbbr;
@@ -151,11 +162,11 @@ public class Temperatura {
 		this.humidity = humidity;
 	}
 
-	public Object getVisibility() {
+	public String getVisibility() {
 		return visibility;
 	}
 
-	public void setVisibility(Object visibility) {
+	public void setVisibility(String visibility) {
 		this.visibility = visibility;
 	}
 
@@ -166,15 +177,4 @@ public class Temperatura {
 	public void setPredictability(Integer predictability) {
 		this.predictability = predictability;
 	}
-
-	@Override
-	public String toString() {
-		return "Temperatura [id=" + id + ", weatherStateName=" + weatherStateName + ", weatherStateAbbr="
-				+ weatherStateAbbr + ", windDirectionCompass=" + windDirectionCompass + ", created=" + created
-				+ ", applicableDate=" + applicableDate + ", minTemp=" + minTemp + ", maxTemp=" + maxTemp + ", theTemp="
-				+ theTemp + ", windSpeed=" + windSpeed + ", windDirection=" + windDirection + ", airPressure="
-				+ airPressure + ", humidity=" + humidity + ", visibility=" + visibility + ", predictability="
-				+ predictability + "]";
-	}
-
 }
