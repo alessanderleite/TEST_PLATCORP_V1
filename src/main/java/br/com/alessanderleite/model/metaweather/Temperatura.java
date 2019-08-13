@@ -26,21 +26,21 @@ public class Temperatura {
 	private String windDirectionCompass;
 	private String created;
 	private String applicableDate;
-	private Double minTemp;
-	private Double maxTemp;
-	private Double theTemp;
-	private Double windSpeed;
-	private Double windDirection;
-	private Double airPressure;
-	private Integer humidity;
+	private String minTemp;
+	private String maxTemp;
+	private String theTemp;
+	private String windSpeed;
+	private String windDirection;
+	private String airPressure;
+	private String humidity;
 	private String visibility;
-	private Integer predictability;
+	private String predictability;
 
 	public Temperatura() {}
 
 	public Temperatura(Integer id, String weatherStateName, String weatherStateAbbr, String windDirectionCompass,
-			String created, String applicableDate, Double minTemp, Double maxTemp, Double theTemp, Double windSpeed,
-			Double windDirection, Double airPressure, Integer humidity, String visibility, Integer predictability) {
+			String created, String applicableDate, String minTemp, String maxTemp, String theTemp, String windSpeed,
+			String windDirection, String airPressure, String humidity, String visibility, String predictability) {
 		this.id = id;
 		this.weatherStateName = weatherStateName;
 		this.weatherStateAbbr = weatherStateAbbr;
@@ -106,59 +106,59 @@ public class Temperatura {
 		this.applicableDate = applicableDate;
 	}
 
-	public Double getMinTemp() {
+	public String getMinTemp() {
 		return minTemp;
 	}
 
-	public void setMinTemp(Double minTemp) {
+	public void setMinTemp(String minTemp) {
 		this.minTemp = minTemp;
 	}
 
-	public Double getMaxTemp() {
+	public String getMaxTemp() {
 		return maxTemp;
 	}
 
-	public void setMaxTemp(Double maxTemp) {
+	public void setMaxTemp(String maxTemp) {
 		this.maxTemp = maxTemp;
 	}
 
-	public Double getTheTemp() {
+	public String getTheTemp() {
 		return theTemp;
 	}
 
-	public void setTheTemp(Double theTemp) {
+	public void setTheTemp(String theTemp) {
 		this.theTemp = theTemp;
 	}
 
-	public Double getWindSpeed() {
+	public String getWindSpeed() {
 		return windSpeed;
 	}
 
-	public void setWindSpeed(Double windSpeed) {
+	public void setWindSpeed(String windSpeed) {
 		this.windSpeed = windSpeed;
 	}
 
-	public Double getWindDirection() {
+	public String getWindDirection() {
 		return windDirection;
 	}
 
-	public void setWindDirection(Double windDirection) {
+	public void setWindDirection(String windDirection) {
 		this.windDirection = windDirection;
 	}
 
-	public Double getAirPressure() {
+	public String getAirPressure() {
 		return airPressure;
 	}
 
-	public void setAirPressure(Double airPressure) {
+	public void setAirPressure(String airPressure) {
 		this.airPressure = airPressure;
 	}
 
-	public Integer getHumidity() {
+	public String getHumidity() {
 		return humidity;
 	}
 
-	public void setHumidity(Integer humidity) {
+	public void setHumidity(String humidity) {
 		this.humidity = humidity;
 	}
 
@@ -170,11 +170,11 @@ public class Temperatura {
 		this.visibility = visibility;
 	}
 
-	public Integer getPredictability() {
+	public String getPredictability() {
 		return predictability;
 	}
 
-	public void setPredictability(Integer predictability) {
+	public void setPredictability(String predictability) {
 		this.predictability = predictability;
 	}
 }

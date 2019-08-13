@@ -26,8 +26,8 @@ public class ClienteTemperatura {
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	
-	private Double minTemp;
-	private Double maxTemp;
+	private String minTemp;
+	private String maxTemp;
 	
 	@OneToMany(mappedBy = "clienteTemperatura", fetch = FetchType.LAZY)
 	private Set<Cliente> clientes = new HashSet<Cliente>(0);
@@ -41,13 +41,13 @@ public class ClienteTemperatura {
 		this.maxTemp = null;
 	}
 
-	public ClienteTemperatura(Integer id, Double minTemp, Double maxTemp) {
+	public ClienteTemperatura(Integer id, String minTemp, String maxTemp) {
 		this.id = id;
 		this.minTemp = minTemp;
 		this.maxTemp = maxTemp;
 	}
 
-	public ClienteTemperatura(Integer id, Double minTemp, Double maxTemp, Localizacao localizacao) {
+	public ClienteTemperatura(Integer id, String minTemp, String maxTemp, Localizacao localizacao) {
 		this.id = id;
 		this.minTemp = minTemp;
 		this.maxTemp = maxTemp;
@@ -62,19 +62,19 @@ public class ClienteTemperatura {
 		this.id = id;
 	}
 
-	public Double getMinTemp() {
+	public String getMinTemp() {
 		return minTemp;
 	}
 
-	public void setMinTemp(Double minTemp) {
+	public void setMinTemp(String minTemp) {
 		this.minTemp = minTemp;
 	}
 
-	public Double getMaxTemp() {
+	public String getMaxTemp() {
 		return maxTemp;
 	}
 
-	public void setMaxTemp(Double maxTemp) {
+	public void setMaxTemp(String maxTemp) {
 		this.maxTemp = maxTemp;
 	}
 
