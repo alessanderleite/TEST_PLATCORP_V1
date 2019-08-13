@@ -36,11 +36,9 @@ public class ClienteTemperatura {
 	@JoinColumns({@JoinColumn(name = "id_localizacao", referencedColumnName = "id", nullable = false)})
 	private Localizacao localizacao;
 	
-	public ClienteTemperatura() {}
-
-	public ClienteTemperatura(Double minTemp, Double maxTemp) {
-		this.minTemp = minTemp;
-		this.maxTemp = maxTemp;
+	public ClienteTemperatura() {
+		this.minTemp = null;
+		this.maxTemp = null;
 	}
 
 	public ClienteTemperatura(Integer id, Double minTemp, Double maxTemp) {
