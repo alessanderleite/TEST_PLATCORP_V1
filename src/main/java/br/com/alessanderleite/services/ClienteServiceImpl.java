@@ -1,6 +1,6 @@
 package br.com.alessanderleite.services;
 
-import java.util.List;
+import java.io.IOException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,50 +8,47 @@ import org.springframework.stereotype.Service;
 
 import br.com.alessanderleite.model.Cliente;
 import br.com.alessanderleite.repository.ClienteRepository;
-import javassist.NotFoundException;
 
 @Service
-public class ClienteServiceImpl implements ClienteService{
-	
+public class ClienteServiceImpl implements ClienteService {
+
 	@Autowired
-	ClienteRepository clienteRepository;
+	private ClienteRepository clienteRepository;
+	
+	@Override
+	public Iterable<Cliente> listAll() {
+		return clienteRepository.findAll();
+	}
 
 	@Override
-	public Cliente criar(final Cliente cliente) {
-		return clienteRepository.save(cliente);
+	public Cliente getById(Integer id) throws IOException {
+		Optional<Cliente> cliente = clienteRepository.findById(id);
+		cliente.orElseThrow(() -> new IOException("Não foi possível localizar o id " + id));
 		
+		return cliente.get();
 	}
 
 	@Override
-	public void alterar(Cliente cliente) {
-		clienteRepository.save(cliente);
+	public Cliente save(Cliente entity) {
+		return clienteRepository.save(entity);
 	}
 
 	@Override
-	public Optional<Cliente> consultarPorId(Long id) {
+	public void delete(Integer id) throws IOException {
 		Optional<Cliente> cliente = clienteRepository.findById(id);
 		if (!cliente.isPresent()) {
-			try {
-				throw new NotFoundException("Não foi possível localizar o id " + id);
-			} catch (NotFoundException e) {
-				e.printStackTrace();
-			}
+			throw new IOException("Não foi possível localizar o id " + id);
 		}
-		return cliente;
-	}
-
-	@Override
-	public List<Cliente> listarTodos() {
-		return clienteRepository.findAll();
-		
-	}
-
-	@Override
-	public void removerPorId(Long id) throws NotFoundException {
-		Optional<Cliente> cliente = clienteRepository.findById(id);
-		
-		cliente.orElseThrow(() -> new NotFoundException("Não foi possível localizar o id " + id));
-		
 		clienteRepository.deleteById(id);
 	}
+
+	@Override
+	public Cliente update(Cliente entity) throws IOException {
+		Cliente cliente = getById(entity.getId());
+		if (cliente != null) {
+			return clienteRepository.save(entity);
+		}
+		return null;
+	}
+
 }
