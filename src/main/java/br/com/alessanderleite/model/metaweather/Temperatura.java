@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * fonte: https://www.metaweather.com/api/
  * Location Day
@@ -20,6 +22,7 @@ public class Temperatura {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", unique = true, nullable = false)
+	@JsonIgnore
 	private Integer id;
 	private String weatherStateName;
 	private String weatherStateAbbr;
