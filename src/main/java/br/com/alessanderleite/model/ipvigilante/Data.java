@@ -48,6 +48,17 @@ public class Data {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
+	
+	public Data(Integer id, String ipv4, String continentName, String countryName, String cityName, String latitude,
+			String longitude) {
+		this.id = id;
+		this.ipv4 = ipv4;
+		this.continentName = continentName;
+		this.countryName = countryName;
+		this.cityName = cityName;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
 
 	public Data(Integer id, String ipv4, String continentName, String countryName, String subdivision1Name,
 			String subdivision2Name, String cityName, String latitude, String longitude,
