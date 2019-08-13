@@ -14,6 +14,8 @@ import javax.persistence.JoinColumns;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "cliente")
 public class Cliente implements Serializable {
@@ -29,6 +31,7 @@ public class Cliente implements Serializable {
 	
 	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JoinColumns({@JoinColumn(name = "id_cliente_temperatura", referencedColumnName = "id", nullable = false)})
+	@JsonIgnore
 	private ClienteTemperatura clienteTemperatura;
 	
 	public Cliente() {}
