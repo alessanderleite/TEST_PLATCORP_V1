@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -16,12 +18,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author Alessander
  *
  */
+@Component
 @Entity
 @Table(name = "temperatura")
 public class Temperatura {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "id", unique = true, nullable = false, scale = 0)
 	@JsonIgnore
 	private Integer id;
 	private String weatherStateName;
@@ -40,26 +43,6 @@ public class Temperatura {
 	private String predictability;
 
 	public Temperatura() {}
-
-	public Temperatura(Integer id, String weatherStateName, String weatherStateAbbr, String windDirectionCompass,
-			String created, String applicableDate, String minTemp, String maxTemp, String theTemp, String windSpeed,
-			String windDirection, String airPressure, String humidity, String visibility, String predictability) {
-		this.id = id;
-		this.weatherStateName = weatherStateName;
-		this.weatherStateAbbr = weatherStateAbbr;
-		this.windDirectionCompass = windDirectionCompass;
-		this.created = created;
-		this.applicableDate = applicableDate;
-		this.minTemp = minTemp;
-		this.maxTemp = maxTemp;
-		this.theTemp = theTemp;
-		this.windSpeed = windSpeed;
-		this.windDirection = windDirection;
-		this.airPressure = airPressure;
-		this.humidity = humidity;
-		this.visibility = visibility;
-		this.predictability = predictability;
-	}
 
 	public Integer getId() {
 		return id;

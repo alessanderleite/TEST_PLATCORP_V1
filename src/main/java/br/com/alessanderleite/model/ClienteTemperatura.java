@@ -16,14 +16,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import br.com.alessanderleite.model.ipvigilante.Localizacao;
+import org.springframework.stereotype.Component;
 
+import br.com.alessanderleite.model.ipvigilante.Localizacao;
+@Component
 @Entity
 @Table(name = "cliente_temperatura")
 public class ClienteTemperatura {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "id", unique = true, nullable = false, scale = 0)
 	private Integer id;
 	
 	private String minTemp;

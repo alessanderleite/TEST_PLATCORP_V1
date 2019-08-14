@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 import br.com.alessanderleite.model.ClienteTemperatura;
 
 /**
@@ -24,13 +26,14 @@ import br.com.alessanderleite.model.ClienteTemperatura;
  * @author Alessander
  *
  */
+@Component
 @Entity
 @Table(name = "localizacao")
 public class Localizacao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "id", unique = true, nullable = false, scale = 0)
 	private Integer id;
 	
 	private String status;

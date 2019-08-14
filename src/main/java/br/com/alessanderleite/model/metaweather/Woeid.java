@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 /**
  * fonte: https://www.metaweather.com/api/
  * Location Search
@@ -14,12 +16,13 @@ import javax.persistence.Table;
  * @author Alessander
  *
  */
+@Component
 @Entity
 @Table(name = "woeid")
 public class Woeid implements Comparable<Woeid> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "id", unique = true, nullable = false, scale = 0)
 	private Integer id;
 	
 	private String distance;
@@ -31,7 +34,6 @@ public class Woeid implements Comparable<Woeid> {
 	public Woeid() {}
 
 	public Woeid(Integer id, String distance, String title, String locationType, String woeid, String lattLong) {
-		super();
 		this.id = id;
 		this.distance = distance;
 		this.title = title;

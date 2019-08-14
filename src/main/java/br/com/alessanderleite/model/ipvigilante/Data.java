@@ -12,18 +12,21 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 /**
  * fonte de referência: https://ipvigilante.com/
  * 
  * @author Alessander
  *
  */
+@Component
 @Entity
 @Table(name = "data")
 public class Data {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "id", unique = true, nullable = false, scale = 0)
 	private Integer id;
 	private String ipv4;
 	private String continentName;
@@ -41,17 +44,6 @@ public class Data {
 
 	public Data(String ipv4, String continentName, String countryName, String cityName, String latitude,
 			String longitude) {
-		this.ipv4 = ipv4;
-		this.continentName = continentName;
-		this.countryName = countryName;
-		this.cityName = cityName;
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
-	
-	public Data(Integer id, String ipv4, String continentName, String countryName, String cityName, String latitude,
-			String longitude) {
-		this.id = id;
 		this.ipv4 = ipv4;
 		this.continentName = continentName;
 		this.countryName = countryName;
