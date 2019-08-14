@@ -20,8 +20,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Component
 @Entity
-@Table(name = "temperatura")
-public class Temperatura {
+@Table(name = "clima")
+public class ClimaModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", unique = true, nullable = false, scale = 0)
@@ -42,7 +42,7 @@ public class Temperatura {
 	private String visibility;
 	private String predictability;
 
-	public Temperatura() {}
+	public ClimaModel() {}
 
 	public Integer getId() {
 		return id;

@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-import br.com.alessanderleite.model.ClienteTemperatura;
+import br.com.alessanderleite.model.HistoricoModel;
 
 /**
  * fonte: https://www.ipvigilante.com/
@@ -29,10 +29,10 @@ import br.com.alessanderleite.model.ClienteTemperatura;
 @Component
 @Entity
 @Table(name = "localizacao")
-public class Localizacao {
+public class LocalizacaoModel {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false, scale = 0)
 	private Integer id;
 	
@@ -40,19 +40,19 @@ public class Localizacao {
 	
 	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JoinColumns({@JoinColumn(name = "id_date", referencedColumnName = "id", nullable = false)})
-	private Data data;
+	private DataModel data;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "localizacao")
-	private Set<ClienteTemperatura> clienteTemperaturas = new HashSet<ClienteTemperatura>(0);
+	private Set<HistoricoModel> historicos = new HashSet<HistoricoModel>(0);
 
-	public Localizacao() {}
+	public LocalizacaoModel() {}
 
-	public Localizacao(Integer id, Data data) {
+	public LocalizacaoModel(Integer id, DataModel data) {
 		this.id = id;
 		this.data = data;
 	}
 
-	public Localizacao(Integer id, String status, Data data) {
+	public LocalizacaoModel(Integer id, String status, DataModel data) {
 		this.id = id;
 		this.status = status;
 		this.data = data;
@@ -74,19 +74,19 @@ public class Localizacao {
 		this.status = status;
 	}
 
-	public Data getData() {
+	public DataModel getData() {
 		return data;
 	}
 
-	public void setData(Data data) {
+	public void setData(DataModel data) {
 		this.data = data;
 	}
 
-	public Set<ClienteTemperatura> getClienteTemperaturas() {
-		return clienteTemperaturas;
+	public Set<HistoricoModel> getHistoricos() {
+		return historicos;
 	}
 
-	public void setClienteTemperaturas(Set<ClienteTemperatura> clienteTemperaturas) {
-		this.clienteTemperaturas = clienteTemperaturas;
+	public void setHistorico(Set<HistoricoModel> historicos) {
+		this.historicos = historicos;
 	}
 }

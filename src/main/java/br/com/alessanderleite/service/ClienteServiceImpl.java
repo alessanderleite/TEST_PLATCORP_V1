@@ -1,4 +1,4 @@
-package br.com.alessanderleite.services;
+package br.com.alessanderleite.service;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.alessanderleite.model.Cliente;
+import br.com.alessanderleite.model.ClienteModel;
 import br.com.alessanderleite.repository.ClienteRepository;
 
 @Service
@@ -16,26 +16,26 @@ public class ClienteServiceImpl implements ClienteService {
 	private ClienteRepository clienteRepository;
 	
 	@Override
-	public Iterable<Cliente> listAll() {
+	public Iterable<ClienteModel> listAll() {
 		return clienteRepository.findAll();
 	}
 
 	@Override
-	public Cliente getById(Integer id) throws IOException {
-		Optional<Cliente> cliente = clienteRepository.findById(id);
+	public ClienteModel getById(Integer id) throws IOException {
+		Optional<ClienteModel> cliente = clienteRepository.findById(id);
 		cliente.orElseThrow(() -> new IOException("Não foi possível localizar o id " + id));
 		
 		return cliente.get();
 	}
 
 	@Override
-	public Cliente save(Cliente entity) {
+	public ClienteModel save(ClienteModel entity) {
 		return clienteRepository.save(entity);
 	}
 
 	@Override
 	public void delete(Integer id) throws IOException {
-		Optional<Cliente> cliente = clienteRepository.findById(id);
+		Optional<ClienteModel> cliente = clienteRepository.findById(id);
 		if (!cliente.isPresent()) {
 			throw new IOException("Não foi possível localizar o id " + id);
 		}
@@ -43,8 +43,8 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
-	public Cliente update(Cliente entity) throws IOException {
-		Cliente cliente = getById(entity.getId());
+	public ClienteModel update(ClienteModel entity) throws IOException {
+		ClienteModel cliente = getById(entity.getId());
 		if (cliente != null) {
 			return clienteRepository.save(entity);
 		}

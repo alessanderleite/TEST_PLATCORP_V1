@@ -23,9 +23,9 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "data")
-public class Data {
+public class DataModel {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false, scale = 0)
 	private Integer id;
 	private String ipv4;
@@ -38,11 +38,11 @@ public class Data {
 	private String longitude;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "data")
-	private Set<Localizacao> localizacoes = new HashSet<Localizacao>(0);
+	private Set<LocalizacaoModel> localizacoes = new HashSet<LocalizacaoModel>(0);
 	
-	public Data() {}
+	public DataModel() {}
 
-	public Data(String ipv4, String continentName, String countryName, String cityName, String latitude,
+	public DataModel(String ipv4, String continentName, String countryName, String cityName, String latitude,
 			String longitude) {
 		this.ipv4 = ipv4;
 		this.continentName = continentName;
@@ -52,9 +52,9 @@ public class Data {
 		this.longitude = longitude;
 	}
 
-	public Data(Integer id, String ipv4, String continentName, String countryName, String subdivision1Name,
+	public DataModel(Integer id, String ipv4, String continentName, String countryName, String subdivision1Name,
 			String subdivision2Name, String cityName, String latitude, String longitude,
-			Set<Localizacao> localizacoes) {
+			Set<LocalizacaoModel> localizacoes) {
 		this.id = id;
 		this.ipv4 = ipv4;
 		this.continentName = continentName;
@@ -139,11 +139,11 @@ public class Data {
 		this.longitude = longitude;
 	}
 
-	public Set<Localizacao> getLocalizacoes() {
+	public Set<LocalizacaoModel> getLocalizacoes() {
 		return localizacoes;
 	}
 
-	public void setLocalizacoes(Set<Localizacao> localizacoes) {
+	public void setLocalizacoes(Set<LocalizacaoModel> localizacoes) {
 		this.localizacoes = localizacoes;
 	}
 }

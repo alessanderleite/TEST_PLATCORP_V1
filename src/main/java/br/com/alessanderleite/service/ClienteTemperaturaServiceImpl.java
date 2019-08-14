@@ -1,4 +1,4 @@
-package br.com.alessanderleite.services;
+package br.com.alessanderleite.service;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.alessanderleite.model.ClienteTemperatura;
+import br.com.alessanderleite.model.HistoricoModel;
 import br.com.alessanderleite.repository.ClienteTemperaturaRepository;
 
 @Service
@@ -16,26 +16,26 @@ public class ClienteTemperaturaServiceImpl implements ClienteTemperaturaService{
 	ClienteTemperaturaRepository clienteTemperaturaRepository;
 
 	@Override
-	public Iterable<ClienteTemperatura> listAll() {
+	public Iterable<HistoricoModel> listAll() {
 		return clienteTemperaturaRepository.findAll();
 	}
 
 	@Override
-	public ClienteTemperatura getById(Integer id) throws IOException {
-		Optional<ClienteTemperatura> clienteTemperatura = clienteTemperaturaRepository.findById(id);
+	public HistoricoModel getById(Integer id) throws IOException {
+		Optional<HistoricoModel> clienteTemperatura = clienteTemperaturaRepository.findById(id);
 		clienteTemperatura.orElseThrow(() -> new IOException("Não foi possível localizar o id " + id));
 		
 		return clienteTemperatura.get();
 	}
 
 	@Override
-	public ClienteTemperatura save(ClienteTemperatura entity) {
+	public HistoricoModel save(HistoricoModel entity) {
 		return clienteTemperaturaRepository.save(entity);
 	}
 
 	@Override
 	public void delete(Integer id) throws IOException {
-		Optional<ClienteTemperatura> clienteTemperatura = clienteTemperaturaRepository.findById(id);
+		Optional<HistoricoModel> clienteTemperatura = clienteTemperaturaRepository.findById(id);
 		if (!clienteTemperatura.isPresent()) {
 			throw new IOException("Não foi possível localizar o id " + id);
 		}
@@ -43,8 +43,8 @@ public class ClienteTemperaturaServiceImpl implements ClienteTemperaturaService{
 	}
 
 	@Override
-	public ClienteTemperatura update(ClienteTemperatura entity) throws IOException {
-		ClienteTemperatura clienteTemperatura = getById(entity.getId());
+	public HistoricoModel update(HistoricoModel entity) throws IOException {
+		HistoricoModel clienteTemperatura = getById(entity.getId());
 		if (clienteTemperatura != null) {
 			return clienteTemperaturaRepository.save(entity);
 		}

@@ -18,38 +18,38 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-import br.com.alessanderleite.model.ipvigilante.Localizacao;
+import br.com.alessanderleite.model.ipvigilante.LocalizacaoModel;
 @Component
 @Entity
-@Table(name = "cliente_temperatura")
-public class ClienteTemperatura {
+@Table(name = "historico")
+public class HistoricoModel {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", unique = true, nullable = false, scale = 0)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	
 	private String minTemp;
 	private String maxTemp;
 	
-	@OneToMany(mappedBy = "clienteTemperatura", fetch = FetchType.LAZY)
-	private Set<Cliente> clientes = new HashSet<Cliente>(0);
+	@OneToMany(mappedBy = "historico", fetch = FetchType.LAZY)
+	private Set<ClienteModel> clientes = new HashSet<ClienteModel>(0);
 
-	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumns({@JoinColumn(name = "id_localizacao", referencedColumnName = "id", nullable = false)})
-	private Localizacao localizacao;
+	private LocalizacaoModel localizacao;
 	
-	public ClienteTemperatura() {
+	public HistoricoModel() {
 		this.minTemp = null;
 		this.maxTemp = null;
 	}
 
-	public ClienteTemperatura(Integer id, String minTemp, String maxTemp) {
+	public HistoricoModel(Integer id, String minTemp, String maxTemp) {
 		this.id = id;
 		this.minTemp = minTemp;
 		this.maxTemp = maxTemp;
 	}
 
-	public ClienteTemperatura(Integer id, String minTemp, String maxTemp, Localizacao localizacao) {
+	public HistoricoModel(Integer id, String minTemp, String maxTemp, LocalizacaoModel localizacao) {
 		this.id = id;
 		this.minTemp = minTemp;
 		this.maxTemp = maxTemp;
@@ -80,19 +80,19 @@ public class ClienteTemperatura {
 		this.maxTemp = maxTemp;
 	}
 
-	public Set<Cliente> getClientes() {
+	public Set<ClienteModel> getClientes() {
 		return clientes;
 	}
 
-	public void setClientes(Set<Cliente> clientes) {
+	public void setClientes(Set<ClienteModel> clientes) {
 		this.clientes = clientes;
 	}
 
-	public Localizacao getLocalizacao() {
+	public LocalizacaoModel getLocalizacao() {
 		return localizacao;
 	}
 
-	public void setLocalizacao(Localizacao localizacao) {
+	public void setLocalizacao(LocalizacaoModel localizacao) {
 		this.localizacao = localizacao;
 	}
 }

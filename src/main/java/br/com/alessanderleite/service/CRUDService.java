@@ -1,4 +1,4 @@
-package br.com.alessanderleite.services;
+package br.com.alessanderleite.service;
 
 import java.io.IOException;
 

@@ -18,8 +18,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Entity
-@Table(name = "woeid")
-public class Woeid implements Comparable<Woeid> {
+@Table(name = "geolocalizacao")
+public class GeolocalizacaoModel implements Comparable<GeolocalizacaoModel> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", unique = true, nullable = false, scale = 0)
@@ -31,9 +31,9 @@ public class Woeid implements Comparable<Woeid> {
 	private String woeid;
 	private String lattLong;
 	
-	public Woeid() {}
+	public GeolocalizacaoModel() {}
 
-	public Woeid(Integer id, String distance, String title, String locationType, String woeid, String lattLong) {
+	public GeolocalizacaoModel(Integer id, String distance, String title, String locationType, String woeid, String lattLong) {
 		this.id = id;
 		this.distance = distance;
 		this.title = title;
@@ -91,7 +91,7 @@ public class Woeid implements Comparable<Woeid> {
 	}
 
 	@Override
-	public int compareTo(Woeid o) {
+	public int compareTo(GeolocalizacaoModel o) {
 		
 		if (Integer.parseInt(this.distance) <= Integer.parseInt(o.distance)) {
 			return -1;

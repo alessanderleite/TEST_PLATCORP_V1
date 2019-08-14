@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.stereotype.Component;
 
@@ -21,31 +23,34 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Component
 @Entity
 @Table(name = "cliente")
-public class Cliente implements Serializable {
+public class ClienteModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false, scale = 0)
 	private Integer id;
 
+	@NotBlank(message = "Preenchimento obrigatório")
 	private String nome;
+	
+	@Min(value = 1, message = "A idade tem que ser maior que zero")
 	private int idade;
 	
 	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumns({@JoinColumn(name = "id_cliente_temperatura", referencedColumnName = "id", nullable = false)})
+	@JoinColumns({@JoinColumn(name = "id_historico", referencedColumnName = "id", nullable = false)})
 	@JsonIgnore
-	private ClienteTemperatura clienteTemperatura;
+	private HistoricoModel historico;
 	
-	public Cliente() {}
+	public ClienteModel() {}
 	
-	public Cliente(String nome, int idade) {
+	public ClienteModel(String nome, int idade) {
 		super();
 		this.nome = nome;
 		this.idade = idade;
 	}
 
-	public Cliente(Integer id, String nome, int idade) {
+	public ClienteModel(Integer id, String nome, int idade) {
 		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
@@ -75,11 +80,11 @@ public class Cliente implements Serializable {
 		this.idade = idade;
 	}
 
-	public ClienteTemperatura getClienteTemperatura() {
-		return clienteTemperatura;
+	public HistoricoModel getHistorico() {
+		return historico;
 	}
 
-	public void setClienteTemperatura(ClienteTemperatura clienteTemperatura) {
-		this.clienteTemperatura = clienteTemperatura;
+	public void setClienteTemperatura(HistoricoModel historico) {
+		this.historico = historico;
 	}
 }
