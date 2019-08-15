@@ -82,7 +82,7 @@ public class Cliente {
 		return historico;
 	}
 
-	public void setClienteTemperatura(Historico historico) {
+	public void setHistorico(Historico historico) {
 		this.historico = historico;
 	}
 }
