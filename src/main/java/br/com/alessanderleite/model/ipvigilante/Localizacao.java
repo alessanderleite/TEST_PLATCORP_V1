@@ -16,43 +16,39 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
-import br.com.alessanderleite.model.HistoricoModel;
+import br.com.alessanderleite.model.Historico;
 
 /**
- * fonte: https://www.ipvigilante.com/
  * 
  * @author Alessander
  *
  */
-@Component
 @Entity
 @Table(name = "localizacao")
-public class LocalizacaoModel {
-
+public class Localizacao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false, scale = 0)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	
 	private String status;
 	
 	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumns({@JoinColumn(name = "id_date", referencedColumnName = "id", nullable = false)})
-	private DataModel data;
+	@JoinColumns({@JoinColumn(name = "id_data", referencedColumnName = "id", nullable = false)})
+	private Data data;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "localizacao")
-	private Set<HistoricoModel> historicos = new HashSet<HistoricoModel>(0);
+	@OneToMany(mappedBy = "localizacao", fetch = FetchType.LAZY)
+	private Set<Historico> historicos = new HashSet<Historico>();
 
-	public LocalizacaoModel() {}
+	public Localizacao() {}
 
-	public LocalizacaoModel(Integer id, DataModel data) {
+	public Localizacao(Integer id, Data data) {
 		this.id = id;
 		this.data = data;
 	}
 
-	public LocalizacaoModel(Integer id, String status, DataModel data) {
+	public Localizacao(Integer id, String status, Data data) {
+		super();
 		this.id = id;
 		this.status = status;
 		this.data = data;
@@ -74,19 +70,19 @@ public class LocalizacaoModel {
 		this.status = status;
 	}
 
-	public DataModel getData() {
+	public Data getData() {
 		return data;
 	}
 
-	public void setData(DataModel data) {
+	public void setData(Data data) {
 		this.data = data;
 	}
 
-	public Set<HistoricoModel> getHistoricos() {
+	public Set<Historico> getHistoricos() {
 		return historicos;
 	}
 
-	public void setHistorico(Set<HistoricoModel> historicos) {
+	public void setHistoricos(Set<Historico> historicos) {
 		this.historicos = historicos;
 	}
 }

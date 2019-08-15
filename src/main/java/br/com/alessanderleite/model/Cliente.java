@@ -1,7 +1,5 @@
 package br.com.alessanderleite.model;
 
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,19 +14,19 @@ import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
-import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Component
+/**
+ * 
+ * @author Alessander
+ *
+ */
 @Entity
 @Table(name = "cliente")
-public class ClienteModel implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false, scale = 0)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 
 	@NotBlank(message = "Preenchimento obrigatório")
@@ -40,17 +38,17 @@ public class ClienteModel implements Serializable {
 	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JoinColumns({@JoinColumn(name = "id_historico", referencedColumnName = "id", nullable = false)})
 	@JsonIgnore
-	private HistoricoModel historico;
+	private Historico historico;
 	
-	public ClienteModel() {}
+	public Cliente() {}
 	
-	public ClienteModel(String nome, int idade) {
+	public Cliente(String nome, int idade) {
 		super();
 		this.nome = nome;
 		this.idade = idade;
 	}
 
-	public ClienteModel(Integer id, String nome, int idade) {
+	public Cliente(Integer id, String nome, int idade) {
 		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
@@ -80,11 +78,11 @@ public class ClienteModel implements Serializable {
 		this.idade = idade;
 	}
 
-	public HistoricoModel getHistorico() {
+	public Historico getHistorico() {
 		return historico;
 	}
 
-	public void setClienteTemperatura(HistoricoModel historico) {
+	public void setClienteTemperatura(Historico historico) {
 		this.historico = historico;
 	}
 }

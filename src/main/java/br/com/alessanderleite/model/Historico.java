@@ -16,13 +16,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
+import br.com.alessanderleite.model.ipvigilante.Localizacao;
 
-import br.com.alessanderleite.model.ipvigilante.LocalizacaoModel;
-@Component
+/**
+ * 
+ * @author Alessander
+ *
+ */
 @Entity
 @Table(name = "historico")
-public class HistoricoModel {
+public class Historico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
@@ -32,24 +35,24 @@ public class HistoricoModel {
 	private String maxTemp;
 	
 	@OneToMany(mappedBy = "historico", fetch = FetchType.LAZY)
-	private Set<ClienteModel> clientes = new HashSet<ClienteModel>(0);
+	private Set<Cliente> clientes = new HashSet<Cliente>(0);
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JoinColumns({@JoinColumn(name = "id_localizacao", referencedColumnName = "id", nullable = false)})
-	private LocalizacaoModel localizacao;
+	private Localizacao localizacao;
 	
-	public HistoricoModel() {
+	public Historico() {
 		this.minTemp = null;
 		this.maxTemp = null;
 	}
 
-	public HistoricoModel(Integer id, String minTemp, String maxTemp) {
+	public Historico(Integer id, String minTemp, String maxTemp) {
 		this.id = id;
 		this.minTemp = minTemp;
 		this.maxTemp = maxTemp;
 	}
 
-	public HistoricoModel(Integer id, String minTemp, String maxTemp, LocalizacaoModel localizacao) {
+	public Historico(Integer id, String minTemp, String maxTemp, Localizacao localizacao) {
 		this.id = id;
 		this.minTemp = minTemp;
 		this.maxTemp = maxTemp;
@@ -80,19 +83,19 @@ public class HistoricoModel {
 		this.maxTemp = maxTemp;
 	}
 
-	public Set<ClienteModel> getClientes() {
+	public Set<Cliente> getClientes() {
 		return clientes;
 	}
 
-	public void setClientes(Set<ClienteModel> clientes) {
+	public void setClientes(Set<Cliente> clientes) {
 		this.clientes = clientes;
 	}
 
-	public LocalizacaoModel getLocalizacao() {
+	public Localizacao getLocalizacao() {
 		return localizacao;
 	}
 
-	public void setLocalizacao(LocalizacaoModel localizacao) {
+	public void setLocalizacao(Localizacao localizacao) {
 		this.localizacao = localizacao;
 	}
 }

@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import br.com.alessanderleite.model.metaweather.ClimaModel;
-import br.com.alessanderleite.model.metaweather.GeolocalizacaoModel;
+import br.com.alessanderleite.model.metaweather.Clima;
+import br.com.alessanderleite.model.metaweather.Geolocalizacao;
 
 @FeignClient(name = "MetaweatherClient", url = "https://www.metaweather.com/api/location")
 public interface MetaweatherClient {
 
 	@GetMapping(path = "/search/")
-	List<GeolocalizacaoModel> obterLocalizacao(@RequestParam("lattlong") String latt);
+	List<Geolocalizacao> obterLocalizacao(@RequestParam("lattlong") String latt);
 	
 	@GetMapping(path = "/{woeid}/{date}")
-	List<ClimaModel> obterTemperatura(@PathVariable("woeid") String woeid, @PathVariable("date") String date);
+	List<Clima> obterTemperatura(@PathVariable("woeid") String woeid, @PathVariable("date") String date);
 }

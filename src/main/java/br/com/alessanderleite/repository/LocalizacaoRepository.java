@@ -2,8 +2,8 @@ package br.com.alessanderleite.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.alessanderleite.model.ipvigilante.LocalizacaoModel;
+import br.com.alessanderleite.model.ipvigilante.Localizacao;
 
-public interface LocalizacaoRepository extends JpaRepository<LocalizacaoModel, Integer>{
+public interface LocalizacaoRepository extends JpaRepository<Localizacao, Integer>{
 
 }

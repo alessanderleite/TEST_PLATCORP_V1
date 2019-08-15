@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
 /**
  * fonte: https://www.metaweather.com/api/
  * Location Search
@@ -16,13 +14,12 @@ import org.springframework.stereotype.Component;
  * @author Alessander
  *
  */
-@Component
 @Entity
 @Table(name = "geolocalizacao")
-public class GeolocalizacaoModel implements Comparable<GeolocalizacaoModel> {
+public class Geolocalizacao implements Comparable<Geolocalizacao> {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", unique = true, nullable = false, scale = 0)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	
 	private String distance;
@@ -31,9 +28,9 @@ public class GeolocalizacaoModel implements Comparable<GeolocalizacaoModel> {
 	private String woeid;
 	private String lattLong;
 	
-	public GeolocalizacaoModel() {}
+	public Geolocalizacao() {}
 
-	public GeolocalizacaoModel(Integer id, String distance, String title, String locationType, String woeid, String lattLong) {
+	public Geolocalizacao(Integer id, String distance, String title, String locationType, String woeid, String lattLong) {
 		this.id = id;
 		this.distance = distance;
 		this.title = title;
@@ -91,7 +88,7 @@ public class GeolocalizacaoModel implements Comparable<GeolocalizacaoModel> {
 	}
 
 	@Override
-	public int compareTo(GeolocalizacaoModel o) {
+	public int compareTo(Geolocalizacao o) {
 		
 		if (Integer.parseInt(this.distance) <= Integer.parseInt(o.distance)) {
 			return -1;

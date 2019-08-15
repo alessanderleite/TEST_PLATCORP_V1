@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.alessanderleite.model.HistoricoModel;
+import br.com.alessanderleite.model.Historico;
 import br.com.alessanderleite.repository.ClienteTemperaturaRepository;
 
 @Service
@@ -16,26 +16,26 @@ public class ClienteTemperaturaServiceImpl implements ClienteTemperaturaService{
 	ClienteTemperaturaRepository clienteTemperaturaRepository;
 
 	@Override
-	public Iterable<HistoricoModel> listAll() {
+	public Iterable<Historico> listAll() {
 		return clienteTemperaturaRepository.findAll();
 	}
 
 	@Override
-	public HistoricoModel getById(Integer id) throws IOException {
-		Optional<HistoricoModel> clienteTemperatura = clienteTemperaturaRepository.findById(id);
+	public Historico getById(Integer id) throws IOException {
+		Optional<Historico> clienteTemperatura = clienteTemperaturaRepository.findById(id);
 		clienteTemperatura.orElseThrow(() -> new IOException("Não foi possível localizar o id " + id));
 		
 		return clienteTemperatura.get();
 	}
 
 	@Override
-	public HistoricoModel save(HistoricoModel entity) {
+	public Historico save(Historico entity) {
 		return clienteTemperaturaRepository.save(entity);
 	}
 
 	@Override
 	public void delete(Integer id) throws IOException {
-		Optional<HistoricoModel> clienteTemperatura = clienteTemperaturaRepository.findById(id);
+		Optional<Historico> clienteTemperatura = clienteTemperaturaRepository.findById(id);
 		if (!clienteTemperatura.isPresent()) {
 			throw new IOException("Não foi possível localizar o id " + id);
 		}
@@ -43,8 +43,8 @@ public class ClienteTemperaturaServiceImpl implements ClienteTemperaturaService{
 	}
 
 	@Override
-	public HistoricoModel update(HistoricoModel entity) throws IOException {
-		HistoricoModel clienteTemperatura = getById(entity.getId());
+	public Historico update(Historico entity) throws IOException {
+		Historico clienteTemperatura = getById(entity.getId());
 		if (clienteTemperatura != null) {
 			return clienteTemperaturaRepository.save(entity);
 		}

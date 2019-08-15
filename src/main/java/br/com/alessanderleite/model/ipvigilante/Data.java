@@ -12,49 +12,44 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
 /**
- * fonte de referência: https://ipvigilante.com/
  * 
  * @author Alessander
  *
  */
-@Component
 @Entity
 @Table(name = "data")
-public class DataModel {
+public class Data {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false, scale = 0)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
+	
 	private String ipv4;
+	
 	private String continentName;
+	
 	private String countryName;
+	
 	private String subdivision1Name;
+	
 	private String subdivision2Name;
+	
 	private String cityName;
+	
 	private String latitude;
+	
 	private String longitude;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "data")
-	private Set<LocalizacaoModel> localizacoes = new HashSet<LocalizacaoModel>(0);
-	
-	public DataModel() {}
+	private Set<Localizacao> localizacoes = new HashSet<Localizacao>(0);
 
-	public DataModel(String ipv4, String continentName, String countryName, String cityName, String latitude,
-			String longitude) {
-		this.ipv4 = ipv4;
-		this.continentName = continentName;
-		this.countryName = countryName;
-		this.cityName = cityName;
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
+	public Data() {}
 
-	public DataModel(Integer id, String ipv4, String continentName, String countryName, String subdivision1Name,
+	public Data(Integer id, String ipv4, String continentName, String countryName, String subdivision1Name,
 			String subdivision2Name, String cityName, String latitude, String longitude,
-			Set<LocalizacaoModel> localizacoes) {
+			Set<Localizacao> localizacoes) {
+		super();
 		this.id = id;
 		this.ipv4 = ipv4;
 		this.continentName = continentName;
@@ -65,6 +60,18 @@ public class DataModel {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.localizacoes = localizacoes;
+	}
+
+	public Data(Integer id, String ipv4, String continentName, String countryName, String cityName, String latitude,
+			String longitude) {
+		super();
+		this.id = id;
+		this.ipv4 = ipv4;
+		this.continentName = continentName;
+		this.countryName = countryName;
+		this.cityName = cityName;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 	public Integer getId() {
@@ -139,11 +146,11 @@ public class DataModel {
 		this.longitude = longitude;
 	}
 
-	public Set<LocalizacaoModel> getLocalizacoes() {
+	public Set<Localizacao> getLocalizacoes() {
 		return localizacoes;
 	}
 
-	public void setLocalizacoes(Set<LocalizacaoModel> localizacoes) {
+	public void setLocalizacoes(Set<Localizacao> localizacoes) {
 		this.localizacoes = localizacoes;
-	}
+	}	
 }

@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -18,13 +16,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author Alessander
  *
  */
-@Component
 @Entity
 @Table(name = "clima")
-public class ClimaModel {
+public class Clima {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", unique = true, nullable = false, scale = 0)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	@JsonIgnore
 	private Integer id;
 	private String weatherStateName;
@@ -42,7 +39,7 @@ public class ClimaModel {
 	private String visibility;
 	private String predictability;
 
-	public ClimaModel() {}
+	public Clima() {}
 
 	public Integer getId() {
 		return id;
