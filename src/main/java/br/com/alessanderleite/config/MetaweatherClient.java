@@ -15,7 +15,7 @@ public interface MetaweatherClient {
 
 	@GetMapping(path = "/search/")
 	List<Geolocalizacao> obterLocalizacao(@RequestParam("lattlong") String latt);
-	
-	@GetMapping(path = "/{woeid}/{date}")
-	List<Clima> obterTemperatura(@PathVariable("woeid") String woeid, @PathVariable("date") String date);
+
+	@GetMapping(path = "/{woeid}/{data}")
+	List<Clima> obterClima(@PathVariable("woeid") String woeid, @PathVariable("data") String data);
 }
