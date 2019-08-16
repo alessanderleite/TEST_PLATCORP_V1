@@ -40,7 +40,7 @@ public class Localizacao {
 	@JoinColumns({ @JoinColumn(name = "id_data", referencedColumnName = "id", nullable = false) })
 	private Data data;
 	
-	@OneToMany(mappedBy = "localizacao", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "localidade", fetch = FetchType.LAZY)
 	private Set<Historico> historicos = new HashSet<Historico>(0);
 
 	public Localizacao() {}

@@ -42,7 +42,7 @@ public class HistoricoBO {
 		if (!Optional.ofNullable(historico).isPresent()) {
 			return null;
 		}
-		HistoricoVO retorno = new HistoricoVO(historico.getId(), historico.getMinTemp(), historico.getMaxTemp(), new DataGeoVO(historico.getLocalizacao()));
+		HistoricoVO retorno = new HistoricoVO(historico.getId(), historico.getMinTemp(), historico.getMaxTemp(), new DataGeoVO(historico.getLocalidade()));
 		return retorno;
 	}
 }

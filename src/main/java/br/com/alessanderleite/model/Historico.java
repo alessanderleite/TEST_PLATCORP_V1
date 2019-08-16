@@ -42,25 +42,25 @@ public class Historico {
 	private Set<Cliente> clientes = new HashSet<Cliente>(0);
 
 	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumns({@JoinColumn(name = "id_localizacao", referencedColumnName = "id", nullable = false)})
-	private Localizacao localizacao;
+	@JoinColumns({@JoinColumn(name = "id_localidade", referencedColumnName = "id", nullable = false)})
+	private Localizacao localidade;
 	
 	public Historico() {
 		this.minTemp = null;
 		this.maxTemp = null;
 	}
 
+	public Historico(Integer id, String minTemp, String maxTemp, Localizacao localidade) {
+		this.id = id;
+		this.minTemp = minTemp;
+		this.maxTemp = maxTemp;
+		this.localidade = localidade;
+	}
+
 	public Historico(Integer id, String minTemp, String maxTemp) {
 		this.id = id;
 		this.minTemp = minTemp;
 		this.maxTemp = maxTemp;
-	}
-
-	public Historico(Integer id, String minTemp, String maxTemp, Localizacao localizacao) {
-		this.id = id;
-		this.minTemp = minTemp;
-		this.maxTemp = maxTemp;
-		this.localizacao = localizacao;
 	}
 
 	public Integer getId() {
@@ -95,11 +95,11 @@ public class Historico {
 		this.clientes = clientes;
 	}
 
-	public Localizacao getLocalizacao() {
-		return localizacao;
+	public Localizacao getLocalidade() {
+		return localidade;
 	}
 
-	public void setLocalizacao(Localizacao localizacao) {
-		this.localizacao = localizacao;
+	public void setLocalidade(Localizacao localidade) {
+		this.localidade = localidade;
 	}
 }

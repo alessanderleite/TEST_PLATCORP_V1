@@ -12,11 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 /**
  * 
  * @author Alessander
  *
  */
+@Component
 @Entity
 @Table(name = "data")
 public class Data {
@@ -26,30 +29,21 @@ public class Data {
 	private Integer id;
 	
 	private String ipv4;
-	
 	private String continentName;
-	
 	private String countryName;
-	
 	private String subdivision1Name;
-	
 	private String subdivision2Name;
-	
 	private String cityName;
-	
 	private String latitude;
-	
 	private String longitude;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "data")
-	private Set<Localizacao> localizacoes = new HashSet<Localizacao>(0);
+	private Set<Localizacao> localidades = new HashSet<Localizacao>(0);
 
 	public Data() {}
 
 	public Data(Integer id, String ipv4, String continentName, String countryName, String subdivision1Name,
-			String subdivision2Name, String cityName, String latitude, String longitude,
-			Set<Localizacao> localizacoes) {
-		super();
+			String subdivision2Name, String cityName, String latitude, String longitude, Set<Localizacao> localidades) {
 		this.id = id;
 		this.ipv4 = ipv4;
 		this.continentName = continentName;
@@ -59,13 +53,11 @@ public class Data {
 		this.cityName = cityName;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.localizacoes = localizacoes;
+		this.localidades = localidades;
 	}
 
-	public Data(Integer id, String ipv4, String continentName, String countryName, String cityName, String latitude,
+	public Data(String ipv4, String continentName, String countryName, String cityName, String latitude,
 			String longitude) {
-		super();
-		this.id = id;
 		this.ipv4 = ipv4;
 		this.continentName = continentName;
 		this.countryName = countryName;
@@ -146,11 +138,11 @@ public class Data {
 		this.longitude = longitude;
 	}
 
-	public Set<Localizacao> getLocalizacoes() {
-		return localizacoes;
+	public Set<Localizacao> getLocalidades() {
+		return localidades;
 	}
 
-	public void setLocalizacoes(Set<Localizacao> localizacoes) {
-		this.localizacoes = localizacoes;
-	}	
+	public void setLocalidades(Set<Localizacao> localidades) {
+		this.localidades = localidades;
+	}
 }
