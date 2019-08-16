@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 import br.com.alessanderleite.model.Historico;
 
 /**
@@ -23,6 +25,7 @@ import br.com.alessanderleite.model.Historico;
  * @author Alessander
  *
  */
+@Component
 @Entity
 @Table(name = "localizacao")
 public class Localizacao {
@@ -34,11 +37,11 @@ public class Localizacao {
 	private String status;
 	
 	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumns({@JoinColumn(name = "id_data", referencedColumnName = "id", nullable = false)})
+	@JoinColumns({ @JoinColumn(name = "id_data", referencedColumnName = "id", nullable = false) })
 	private Data data;
 	
 	@OneToMany(mappedBy = "localizacao", fetch = FetchType.LAZY)
-	private Set<Historico> historicos = new HashSet<Historico>();
+	private Set<Historico> historicos = new HashSet<Historico>(0);
 
 	public Localizacao() {}
 
@@ -48,7 +51,6 @@ public class Localizacao {
 	}
 
 	public Localizacao(Integer id, String status, Data data) {
-		super();
 		this.id = id;
 		this.status = status;
 		this.data = data;

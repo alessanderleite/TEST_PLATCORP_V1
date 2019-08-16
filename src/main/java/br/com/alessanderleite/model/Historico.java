@@ -16,13 +16,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 import br.com.alessanderleite.model.ipvigilante.Localizacao;
+
 
 /**
  * 
  * @author Alessander
  *
  */
+@Component
 @Entity
 @Table(name = "historico")
 public class Historico {

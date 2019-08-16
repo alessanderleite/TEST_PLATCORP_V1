@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -21,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author Alessander
  *
  */
+@Component
 @Entity
 @Table(name = "cliente")
 public class Cliente {
