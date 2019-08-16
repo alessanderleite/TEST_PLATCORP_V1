@@ -1,5 +1,6 @@
 package br.com.alessanderleite.businessobject;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,6 +17,7 @@ import br.com.alessanderleite.config.IpVigilanteClient;
 import br.com.alessanderleite.config.MetaweatherClient;
 import br.com.alessanderleite.model.Cliente;
 import br.com.alessanderleite.model.Historico;
+import br.com.alessanderleite.model.ipvigilante.Data;
 import br.com.alessanderleite.model.ipvigilante.Localizacao;
 import br.com.alessanderleite.model.metaweather.Clima;
 import br.com.alessanderleite.model.metaweather.Geolocalizacao;
@@ -45,7 +47,7 @@ public class ClienteBO {
 			
 			Historico hist = new Historico();
 			
-			Localizacao localidade = ipVigilante.obterLocalizacao();
+			Localizacao localidade = ipVigilante.getLocalidade();
 			
 			List<Geolocalizacao> listaGeolocalizacao = metaweather.obterLocalizacao(String.format("%s,%s", localidade.getData().getLatitude(), localidade.getData().getLongitude()));
 			
@@ -70,7 +72,7 @@ public class ClienteBO {
 			});
 			
 			hist.getClientes().add(cliente);
-			hist.setLocalizacao(localidade);
+			hist.setLocalidade(localidade);
 			localidade.getHistoricos().add(hist);
 			cliente.setHistorico(hist);
 			
@@ -84,14 +86,66 @@ public class ClienteBO {
 		}
 	}
 	
-	public List<Retorno> listaTodosClientes() {
+	public List<Retorno> listaClientes() {
 		try {
 			Iterable<Cliente> clientes = clienteService.listAll();
 			List<Retorno> lista = new ArrayList<Retorno>();
 			clientes.forEach(cliente -> lista.add(buildRetorno(cliente)));
 			return lista;
 		} catch (Exception e) {
-			throw new RuntimeException("não foi encontrado clientes");
+			throw new RuntimeException("não encontrado");
+		}
+	}
+	
+	public Retorno buscarClienteId(Integer id) {
+		try {
+			Cliente cliente = clienteService.getById(id);
+			return buildRetorno(cliente);
+		} catch (Exception e) {
+			throw new RuntimeException("Não encontrado");
+		}
+	}
+	
+	public void deletar(Integer id) {
+		try {
+			clienteService.delete(id);
+		} catch (Exception e) {
+			throw new RuntimeException("Não encontrado");
+		}
+	}
+	
+	public Retorno atualizar(Retorno clienteVO) throws IOException {
+		Cliente cliente = clienteService.getById(clienteVO.getCliente().getId());
+		if (Optional.ofNullable(cliente).isPresent()) {
+			
+			Cliente clienteAtualizado = new Cliente(
+					clienteVO.getCliente().getId(), 
+					clienteVO.getCliente().getNome(), 
+					clienteVO.getCliente().getIdade());
+			Historico historico = new Historico(
+					clienteVO.getHistorico().getId(), 
+					clienteVO.getHistorico().getMinTemp(), 
+					clienteVO.getHistorico().getMaxTemp());
+			
+			Localizacao localidade = new Localizacao(
+					cliente.getHistorico().getLocalidade().getId(),
+					cliente.getHistorico().getLocalidade().getData());
+			localidade.setData(new Data(
+					clienteVO.getHistorico().getLocalidade().getIpv4(),
+					clienteVO.getHistorico().getLocalidade().getContinentName(),
+					clienteVO.getHistorico().getLocalidade().getCountryName(),
+					clienteVO.getHistorico().getLocalidade().getCityName(),
+					clienteVO.getHistorico().getLocalidade().getLatitude(), 
+					clienteVO.getHistorico().getLocalidade().getLongitude()));
+			
+			historico.getClientes().add(clienteAtualizado);
+			historico.setLocalidade(localidade);
+			localidade.getHistoricos().add(historico);
+			clienteAtualizado.setHistorico(historico);
+			cliente = clienteService.save(clienteAtualizado);
+			return buildRetorno(clienteAtualizado);
+		}else {
+			throw new RuntimeException("Não encontrado");
 		}
 	}
 	
@@ -113,18 +167,18 @@ public class ClienteBO {
 		retorno.getHistorico().setMaxTemp(cliente.getHistorico().getMaxTemp());
 		
 		//Corrigir VO e Mappear Data em Localidade
-		DataGeoVO local = new DataGeoVO();
+		DataGeoVO localidade = new DataGeoVO();
 		
-		local.setId(cliente.getHistorico().getLocalizacao().getId());
-		local.setCityName(cliente.getHistorico().getLocalizacao().getData().getCityName());
-		local.setContinentName(cliente.getHistorico().getLocalizacao().getData().getContinentName());
-		local.setIpv4(cliente.getHistorico().getLocalizacao().getData().getIpv4());
-		local.setCountryName(cliente.getHistorico().getLocalizacao().getData().getCountryName());
-		local.setLatitude(cliente.getHistorico().getLocalizacao().getData().getLatitude());
-		local.setLongitude(cliente.getHistorico().getLocalizacao().getData().getLongitude());
+		localidade.setId(cliente.getHistorico().getLocalidade().getId());
+		localidade.setCityName(cliente.getHistorico().getLocalidade().getData().getCityName());
+		localidade.setContinentName(cliente.getHistorico().getLocalidade().getData().getContinentName());
+		localidade.setIpv4(cliente.getHistorico().getLocalidade().getData().getIpv4());
+		localidade.setCountryName(cliente.getHistorico().getLocalidade().getData().getCountryName());
+		localidade.setLatitude(cliente.getHistorico().getLocalidade().getData().getLatitude());
+		localidade.setLongitude(cliente.getHistorico().getLocalidade().getData().getLongitude());
 		
 		
-		retorno.getHistorico().setLocalidade(local);
+		retorno.getHistorico().setLocalidade(localidade);
 		
 
 		return retorno;
