@@ -27,6 +27,7 @@ import br.com.alessanderleite.valueobject.DataGeoVO;
 import br.com.alessanderleite.valueobject.HistoricoVO;
 import br.com.alessanderleite.valueobject.Retorno;
 
+
 @Component
 public class ClienteBO {
 
