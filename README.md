@@ -1,6 +1,6 @@
 # CRUD Rest com Spring Boot
 
-Introdução
+Introdução:
 
     Esse projeto foi desenvolvido com o objetivo criar um CRUD REST com SPRING BOOT. 
 
@@ -19,17 +19,15 @@ Serviços:
     API aberta de geolocalização por IP https://www.ipvigilante.com/
     API aberta de clima por geolocalização https://www.metaweather.com/api/
 
-Endpoints REST
+Endpoints REST:
 
-Com o Postman aberto execute os seguintes JSON's abaixo:
-
-    * POST
+    POST
         http://localhost:8080/api/v1/criar - Criar um Cliente.
         
-    * PUT
+    PUT
         http://localhost:8080/alterar - Alterar um Cliente.
 
-    * GET
+    GET
         http://localhost:8080/consultar - Listar todos os Clientes.
         http://localhost:8080/consultar/{id} - Consultar um Cliente por id.
         
