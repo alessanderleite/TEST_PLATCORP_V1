@@ -2,7 +2,7 @@
 
 Introdução:
 
-    Esse projeto foi desenvolvido com o objetivo criar um CRUD REST com SPRING BOOT. 
+    Esse projeto foi desenvolvido com o objetivo de criar um CRUD REST com SPRING BOOT. 
 
 Ferramentas Utilizadas:
 
@@ -11,6 +11,7 @@ Ferramentas Utilizadas:
     Spring Boot
     Spring Data JPA
     Spring Clound OpenFeign
+    Maven
     MySQL Server
     Postman
     
@@ -22,14 +23,14 @@ Serviços:
 Endpoints REST:
 
     POST
-        http://localhost:8080/api/v1/criar - Criar um Cliente.
+    http://localhost:8080/api/v1/criar - Criar um Cliente
         
     PUT
-        http://localhost:8080/alterar - Alterar um Cliente.
+    http://localhost:8080/alterar - Alterar um Cliente
 
     GET
-        http://localhost:8080/consultar - Listar todos os Clientes.
-        http://localhost:8080/consultar/{id} - Consultar um Cliente por id.
+    http://localhost:8080/consultar - Listar todos os Clientes
+    http://localhost:8080/consultar/{id} - Consultar um Cliente por id
         
-    DELETE
-        http://localhost:8080/remover/{id} - Remover Cliente por id.
+    DELETE 
+    http://localhost:8080/remover/{id} - Remover Cliente por id
